@@ -41,7 +41,7 @@ USE_L10N = True
 
 LANGUAGE_CODE = 'uk-uk'
 
-TIME_ZONE = 'Europe/Kyiv'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_TZ = True
 
