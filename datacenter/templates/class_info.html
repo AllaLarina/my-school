@@ -1,0 +1,39 @@
+{% load poll_extras %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <ul class="nav" style="background-color: #e3f2fd;">
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url "classes" %}">На головну</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url "schedule" year=year letter=letter%}">До розкладу {{year|subtract:entry_year}}{{letter}} класу</a>
+    </li>
+  </ul>
+  <div class="container">
+    <h2 class="mt-2 mb-4">Учні {{year|subtract:entry_year}}{{letter}} класу</h2>
+    <table class="table table-striped mt-2 mb-4">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style="text-align:center;">№</th>
+          <th scope="col" style="text-align:center;">Прізвище Ім'я</th>
+          <th scope="col" style="text-align:center;">День народження</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for schoolkid in schoolkids %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td><a href="{% url 'schoolkid' schoolkid_id=schoolkid.id %}">{{ schoolkid.full_name}}</a></td>
+            <td>{{ schoolkid.birthday}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
